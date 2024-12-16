@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { delay, motion } from 'framer-motion'

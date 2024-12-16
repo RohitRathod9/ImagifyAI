@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
@@ -11,8 +12,9 @@ const Login = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;  // Accessing the backend URL from .env
 
-    const { backendUrl, setShowLogin, setToken, setUser } = useContext(AppContext)
+    const { setShowLogin, setToken, setUser } = useContext(AppContext)
 
     const onSubmitHandler = async (e) => {
         e.preventDefault()
@@ -21,7 +23,7 @@ const Login = () => {
 
             if (state === 'Login') {
 
-                const { data } = await axios.post(backendUrl + '/api/user/login', { email, password })
+                const { data } = await axios.post('${backendUrl}/api/user/login', { email, password })
 
                 if (data.success) {
                     setToken(data.token)
@@ -34,7 +36,7 @@ const Login = () => {
 
             } else {
 
-                const { data } = await axios.post(backendUrl + '/api/user/register', { name, email, password })
+                const { data } = await axios.post(`${backendUrl}/api/user/register`, { name, email, password })
 
                 if (data.success) {
                     setToken(data.token)
@@ -99,7 +101,7 @@ const Login = () => {
                 <button className='bg-blue-600 w-full text-white py-2 rounded-full'>{state === 'Login' ? 'login' : 'create account'}</button>
 
                 {state === "Login"
-                    ? <p className='mt-5 text-center'>Don't have an account? <span onClick={() => setState('Sign Up')} className='text-blue-600 cursor-pointer'>Sign up</span></p>
+                    ? <p className='mt-5 text-center'>Don`&apos;`t have an account? <span onClick={() => setState('Sign Up')} className='text-blue-600 cursor-pointer'>Sign up</span></p>
                     : <p className='mt-5 text-center'>Already have an account? <span onClick={() => setState('Login')} className='text-blue-600 cursor-pointer'>Login</span></p>
                 }
 
