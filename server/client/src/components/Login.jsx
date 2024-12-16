@@ -13,6 +13,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const backendUrl = import.meta.env.VITE_BACKEND_URL;  // Accessing the backend URL from .env
+    console.log(backendUrl);
 
     const { setShowLogin, setToken, setUser } = useContext(AppContext)
 
